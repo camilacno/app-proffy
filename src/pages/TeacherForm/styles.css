@@ -98,7 +98,7 @@
 }
 
 #page-teacher-form main footer button:hover {
-  background: var(--color-secundary-dark);
+  background: var(--color-secondary-dark);
 }
 
 @media (min-width: 700px) {
