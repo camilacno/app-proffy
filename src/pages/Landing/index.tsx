@@ -1,20 +1,20 @@
-import React from "react";
-import { View, Image, Text, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { RectButton } from "react-native-gesture-handler";
+import React from 'react';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RectButton } from 'react-native-gesture-handler';
 
-import styles from "./styles";
+import styles from './styles';
 
-import landingImg from "../../assets/images/landing.png";
-import studyIcon from "../../assets/images/icons/study.png";
-import giveClassesIcon from "../../assets/images/icons/give-classes.png";
-import heartIcon from "../../assets/images/icons/heart.png";
+import landingImg from '../../assets/images/landing.png';
+import studyIcon from '../../assets/images/icons/study.png';
+import giveClassesIcon from '../../assets/images/icons/give-classes.png';
+import heartIcon from '../../assets/images/icons/heart.png';
 
 function Landing() {
   const { navigate } = useNavigation();
 
   function handleNavGiveClassesPage() {
-    navigate("GiveClasses");
+    navigate('GiveClasses');
   }
 
   return (
@@ -22,7 +22,7 @@ function Landing() {
       <Image style={styles.banner} source={landingImg} />
 
       <Text style={styles.title}>
-        Seja bem vindo, {"\n"}
+        Seja bem vindo, {'\n'}
         <Text style={styles.titleBold}>O que deseja fazer?</Text>
       </Text>
 

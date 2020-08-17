@@ -1,9 +1,9 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Landing from "../pages/Landing";
-import GiveClasses from "../pages/GiveClasses";
+import Landing from '../pages/Landing';
+import GiveClasses from '../pages/GiveClasses';
 
 const { Navigator, Screen } = createStackNavigator();
 
