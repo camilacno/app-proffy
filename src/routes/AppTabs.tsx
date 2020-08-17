@@ -40,8 +40,14 @@ function AppTabs() {
       <Screen
         options={{
           tabBarLabel: 'Proffys',
-          tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="ios-easel" size={size} color={color} />;
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <Ionicons
+                name="ios-easel"
+                size={size}
+                color={focused ? '#8257e5' : color}
+              />
+            );
           },
         }}
         name="TeacherList"
@@ -50,8 +56,14 @@ function AppTabs() {
       <Screen
         options={{
           tabBarLabel: 'Favoritos',
-          tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="ios-heart" size={size} color={color} />;
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <Ionicons
+                name="ios-heart"
+                size={size}
+                color={focused ? '#8257e5' : color}
+              />
+            );
           },
         }}
         name="Favorites"
