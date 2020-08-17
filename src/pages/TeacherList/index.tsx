@@ -42,15 +42,15 @@ function TeacherList() {
                   placeholderTextColor="#c1bccc"
                 />
               </View>
-            </View>
 
-            <View style={styles.inputBlock}>
-              <Text style={styles.label}>Horário</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Qual horário?"
-                placeholderTextColor="#c1bccc"
-              />
+              <View style={styles.inputBlock}>
+                <Text style={styles.label}>Horário</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Qual horário?"
+                  placeholderTextColor="#c1bccc"
+                />
+              </View>
             </View>
 
             <RectButton style={styles.submitButton}>
