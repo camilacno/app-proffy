@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 
-import TeacherItem from '../../components/TeacherItem/inde';
+import TeacherItem from '../../components/TeacherItem';
 import PageHeader from '../../components/PageHeader';
 import styles from './styles';
 
