@@ -9,6 +9,7 @@ import api from '../../services/api';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import PageHeader from '../../components/PageHeader';
 import styles from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
@@ -32,6 +33,10 @@ function TeacherList() {
       }
     });
   }
+
+  useFocusEffect(() => {
+    loadFavorites();
+  });
 
   function handleToggoFilters() {
     setIsFilterVisible(!isFilterVisible);
