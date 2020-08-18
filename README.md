@@ -121,24 +121,14 @@ $ git clone https://github.com/camilacno/proffy-web.git
 
 ### 2.  Executando a Aplicação:
 
-  #### API
+  #### Acessando o projeto web
   ```bash
-$ cd server
+$ cd web
 ```
 
   #### Instalando as dependências do projeto.
    ```bash
 $ yarn # ou npm install
-```
-  
-  #### Configurando o banco de dados e criando as tabelas.
-  ```bash
-$ yarn knex:migrate # ou npm run knex:migrate
-```
-  
-  #### Inicie a API
-  ```bash
-$ yarn start # ou npm start
 ```
 
  #### Inicie a aplicação web
