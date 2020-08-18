@@ -50,7 +50,7 @@ Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [R
 - [ ] Perfil do Proffy
 - [ ] Logout
 
-###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
+###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
 
 ## Como Executar
 
