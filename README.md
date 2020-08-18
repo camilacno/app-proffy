@@ -7,17 +7,17 @@
 
 ## 📁Tabela de Conteúdos
 <p>  
-	<a href="#🚀sobre-o-projeto">O Projeto</a> | 
+	<a href="#🚀-sobre-o-projeto">O Projeto</a> | 
 	<a href="#🛠-tecnologias">Tecnologias</a> | 
-	<a href="#💻features">Features</a> | 
-	<a href="#▶como-executar">Como Executar</a> | 
+	<a href="#💻-features">Features</a> | 
+	<a href="#▶-como-executar">Como Executar</a> | 
 	<a href="#sobre-a-nlw">NLW</a>
 </p>
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/389a037d3d1d70b50026)
 <br>
 
-## 🚀Sobre o Projeto
+## 🚀 Sobre o Projeto
 
 O  **Proffy**  é uma aplicação Web e Mobile feita para auxiliar na conexão entre os alunos e os professores. 
 Oferece aos professores a possibilidade de registrar aulas, podendo adicionar informações como a disciplina, o custo e horário.
@@ -40,7 +40,7 @@ Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [R
 
 ###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
 
-## 💻Features
+## 💻 Features
   
 - [x] Cadastro de usuário 
 - [x] Cadastro aulas 
