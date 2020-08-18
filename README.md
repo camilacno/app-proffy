@@ -5,7 +5,7 @@
 
 ![Telas mobile e web](https://github.com/camilacno/proffy-mobile/blob/master/.github/design.png?raw=true)
 
-## 📁Tabela de Conteúdos
+## Tabela de Conteúdos
 <p>  
 	<a href="#sobre-o-projeto">O Projeto</a> | 
 	<a href="#tecnologias">Tecnologias</a> | 
@@ -25,7 +25,7 @@ Aos alunos, oferece a possibilidade de buscar pelas aulas cadastradas.
 
 Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [Rocketseat](https://rocketseat.com.br/).
 
-###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
+###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
 
 
 ## Tecnologias
@@ -38,7 +38,7 @@ Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [R
 -   [Express](https://expressjs.com/)
 -   [axios](https://github.com/axios/axios)
 
-###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
+###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
 
 ## Features
   
@@ -86,9 +86,9 @@ $ yarn knex:migrate # ou npm run knex:migrate
   ```bash
 $ yarn start # ou npm start
 ```
-###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
+###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
 
 ## Sobre a NLW
 A Next Level Week é uma proposta da  [Rocketseat](https://rocketseat.com.br/). Trata-se de um evento online focado na prática, onde a ideia é aprender desde os principais fundamentos do desenvolvimento web, até conceitos avançados e tecnologias modernas. 
 
-###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
+###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
