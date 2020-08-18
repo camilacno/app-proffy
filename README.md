@@ -11,7 +11,6 @@
 	<a href="#tecnologias">Tecnologias</a> | 
 	<a href="#features">Features</a> | 
 	<a href="#como-executar">Como Executar</a> | 
-	<a href="#sobre-a-nlw">NLW</a>
 </p>
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/389a037d3d1d70b50026)
@@ -86,9 +85,4 @@ $ yarn knex:migrate # ou npm run knex:migrate
   ```bash
 $ yarn start # ou npm start
 ```
-###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
-
-## Sobre a NLW
-A Next Level Week é uma proposta da  [Rocketseat](https://rocketseat.com.br/). Trata-se de um evento online focado na prática, onde a ideia é aprender desde os principais fundamentos do desenvolvimento web, até conceitos avançados e tecnologias modernas. 
-
 ###### *Voltar para a [Tabela de Conteúdos](#tabela-de-conteúdos)*.
