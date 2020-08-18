@@ -107,6 +107,7 @@ Este repositório trata especificamente do backend da aplicação, desenvolvido 
 - [ ] Logout
 
 ###### *Voltar para a [Tabela de Conteúdos](#link-tabela-de-conteúdos)*.
+<br>
 
 ## :fire: Como Executar
 
