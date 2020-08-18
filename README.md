@@ -10,7 +10,7 @@
 	<a href="#sobre-o-projeto">O Projeto</a> | 
 	<a href="#tecnologias">Tecnologias</a> | 
 	<a href="#features">Features</a> | 
-	<a href="#como-executar">Como Executar</a> | 
+	<a href="#como-executar">Como Executar</a>
 </p>
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/389a037d3d1d70b50026)
