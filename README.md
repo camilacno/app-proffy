@@ -52,7 +52,7 @@ Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [R
 
 ###### *Voltar para a [Tabela de Conteúdos](#📁tabela-de-conteúdos)*.
 
-## ▶ Como Executar
+## Como Executar
 
 -   ### **Pré-requisitos**    
     -   É  **necessário**  possuir o  **[Node.js](https://nodejs.org/en/)**  instalado no computador
