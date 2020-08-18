@@ -58,10 +58,10 @@ Essa aplicação foi realizada durante a **Next  Level Week #2**, projeto da  [R
 
 ## :inbox_tray: Layouts Projeto
 
-[Versão 1.0 web](https://www.figma.com/file/GHGS126t7WYjnPZdRKChJF/Proffy-Web?node-id=0%3A1)
-[Versão 1.0 Mobile](https://www.figma.com/file/e33KvgUpFdunXxJjHnK7CG/Proffy-Mobile)
-[Versão 2.0 Web](https://www.figma.com/file/7XtNZowoxNdsTlLIx7sGAV/Proffy-Web-2.0-(Copy)?node-id=160%3A2761)
-[Versão 2.0 Mobile](https://www.figma.com/file/gCiWANhD3AfLgPLyjgunYE/Proffy-Mobile-2.0-(Copy)?node-id=188%3A581)
+- [Versão 1.0 web](https://www.figma.com/file/GHGS126t7WYjnPZdRKChJF/Proffy-Web?node-id=0%3A1)
+- [Versão 1.0 Mobile](https://www.figma.com/file/e33KvgUpFdunXxJjHnK7CG/Proffy-Mobile)
+- [Versão 2.0 Web](https://www.figma.com/file/7XtNZowoxNdsTlLIx7sGAV/Proffy-Web-2.0-(Copy)?node-id=160%3A2761)
+- [Versão 2.0 Mobile](https://www.figma.com/file/gCiWANhD3AfLgPLyjgunYE/Proffy-Mobile-2.0-(Copy)?node-id=188%3A581)
 
 ###### *Voltar para a [Tabela de Conteúdos](#link-tabela-de-conteúdos)*.
 <br>
