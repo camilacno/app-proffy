@@ -4,6 +4,24 @@ import bcrypt from 'bcryptjs';
 import db from '../database/connection';
 
 export default class UsersController {
+  async find(req: Request, res: Response) {
+    console.log('rota find chamada');
+    const { id } = req.params;
+
+    console.log(id);
+
+    const trx = await db.transaction();
+    const user = await trx
+      .select()
+      .from('users')
+      .where({ id: id })
+      .then(row => row);
+
+    console.log(user[0]);
+
+    return res.status(200).json(user[0]);
+  }
+
   async index(req: Request, res: Response) {
     console.log('rota index chamada');
     const trx = await db.transaction();
