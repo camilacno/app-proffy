@@ -32,9 +32,11 @@ function Profile() {
   const [currentBio, setCurrentBio] = useState('');
   const [currentAvatar, setCurrentAvatar] = useState('');
   const [currentEmail, setCurrentEmail] = useState('');
+  const [currentSubject, setCurrentSubject] = useState('');
 
   const [nameSubmitted, setNameSubmitted] = useState('');
   const [last_nameSubmitted, setLastNameSubmitted] = useState('');
+  const [emailSubmitted, setEmailSubmitted] = useState('');
   const [avatarSubmitted, setAvatarSubmitted] = useState('');
   const [whatsappSubmitted, setWhatsappSubmitted] = useState('');
   const [bioSubmitted, setBioSubmitted] = useState('');
@@ -50,8 +52,11 @@ function Profile() {
     if (token) {
       const { id } = (await jwt.verify(token, authConfig.secret)) as any;
 
+      const response = await api.get(`classes/${id}`);
+      console.log('rota find classes chamada');
+
       const currentData = await api.get(`users/${id}`);
-      console.log('rota find chamada pelo front');
+      console.log('rota find user chamada');
       const {
         name,
         last_name,
@@ -60,12 +65,15 @@ function Profile() {
         whatsapp,
         bio,
       } = await currentData.data;
+
       setCurrentName(name);
       setCurrentLastName(last_name);
       setCurrentEmail(email);
       setCurrentWhatsapp(whatsapp);
       setCurrentBio(bio);
       setCurrentAvatar(avatar);
+
+      setCurrentSubject(response.data[0].subject);
     }
   }
   getCurrentData();
@@ -100,15 +108,15 @@ function Profile() {
     setScheduleItems(updatedScheduleItems);
   }
 
-  async function handleCreateClass(e: FormEvent) {
+  async function handleUpdateProfile(e: FormEvent) {
     console.log('botão ativou');
     e.preventDefault();
 
     await api
-      .post('give-classes', {
+      .put('users', {
         name: nameSubmitted,
         last_name: last_nameSubmitted,
-        avatar: avatarSubmitted,
+        email: emailSubmitted,
         whatsapp: whatsappSubmitted,
         bio: bioSubmitted,
         subject,
@@ -135,11 +143,7 @@ function Profile() {
       />
 
       <div className="header-container">
-        <img
-          src="https://avatars0.githubusercontent.com/u/47459889?s=460&v=4"
-          alt=""
-          className="picture"
-        />
+        <img src={currentAvatar} alt="" className="picture" />
 
         <FontAwesomeIcon
           className="camera-img"
@@ -148,12 +152,12 @@ function Profile() {
           color="#04bf58"
         />
 
-        <strong>Camila Nepomuceno</strong>
-        <p>Confeitaria</p>
+        <strong>{currentName}</strong>
+        <p>{currentSubject}</p>
       </div>
 
       <main>
-        <form onSubmit={handleCreateClass}>
+        <form onSubmit={handleUpdateProfile}>
           <fieldset>
             <legend>Seus dados</legend>
             <div className="user-info-db">
@@ -162,7 +166,7 @@ function Profile() {
                 label="Nome"
                 placeholder={currentName}
                 onChange={e => {
-                  setWhatsappSubmitted(e.target.value);
+                  setNameSubmitted(e.target.value);
                 }}
               />
 
@@ -171,7 +175,7 @@ function Profile() {
                 label="Sobrenome"
                 placeholder={currentLastName}
                 onChange={e => {
-                  setWhatsappSubmitted(e.target.value);
+                  setLastNameSubmitted(e.target.value);
                 }}
               />
             </div>
@@ -183,7 +187,7 @@ function Profile() {
                 label="E-mail"
                 placeholder={currentEmail}
                 onChange={e => {
-                  setWhatsappSubmitted(e.target.value);
+                  setEmailSubmitted(e.target.value);
                 }}
               />
 
@@ -216,9 +220,9 @@ function Profile() {
             <Select
               name="subject"
               label="Matéria"
-              value={subject}
+              value={currentSubject}
               onChange={e => {
-                setSubject(e.target.value);
+                setCurrentSubject(e.target.value);
               }}
               options={[
                 { value: 'Literature', label: 'Literature' },
