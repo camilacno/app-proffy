@@ -24,17 +24,17 @@ function Login() {
   const history = useHistory();
 
   async function handleLogin(values: any) {
-    const response = await api.post('/login', {
+    const response = await api.post('login', {
       email: values.email,
       password: values.password,
     });
 
     const { token } = response.data;
-    const { name, bio } = response.data.user;
+    const { name, bio, whatsapp } = response.data.user;
 
     localStorage.setItem('@proffy:token', token);
     localStorage.setItem('@proffy:name', name);
-    history.push('/give-classes');
+    history.push('/');
   }
 
   const validations = Yup.object().shape({
