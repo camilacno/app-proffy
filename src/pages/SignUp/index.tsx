@@ -35,7 +35,7 @@ function SignUp() {
     if ((values.is_proffy = true)) {
       history.push('/give-classes');
     }
-    history.push('/');
+    history.push('/signup-complete');
   }
 
   const validations = Yup.object().shape({
