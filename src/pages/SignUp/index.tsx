@@ -23,41 +23,54 @@ function SignUp() {
   };
 
   async function handleLogin(values: any) {
-    const response = await api.post('/login', {
+    const response = await api.post('users', {
+      name: values.name,
+      last_name: values.last_name,
+      whatsapp: values.whatsapp,
+      is_proffy: values.is_proffy,
       email: values.email,
       password: values.password,
     });
 
-    const { token } = response.data;
-    const { name, bio } = response.data.user;
-
-    localStorage.setItem('@proffy:token', token);
-    localStorage.setItem('@proffy:name', name);
-    history.push('/give-classes');
+    if ((values.is_proffy = true)) {
+      history.push('/give-classes');
+    }
+    history.push('/');
   }
 
   const validations = Yup.object().shape({
     name: Yup.string().required('Obrigatório'),
     last_name: Yup.string(),
     whatsapp: Yup.string(),
-    email: Yup.string().email().required('Obrigatório'),
+    email: Yup.string()
+      .email('Deve ser um email válido')
+      .required('Obrigatório'),
     password: Yup.string()
       .min(6, 'Deve ter no mínimo 6 caracteres')
       .required('Obrigatório'),
   });
+
+  const initialValues = {
+    name: '',
+    last_name: '',
+    whatsapp: '',
+    email: '',
+    password: '',
+    is_proffy: false,
+  };
 
   return (
     <div id="page-signup">
       <div id="page-signup-content">
         <div className="signup-form">
           <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={initialValues}
             onSubmit={handleLogin}
             validationSchema={validations}
           >
             <Form className="form">
               <strong>
-                Cadastro{' '}
+                Cadastro
                 <p>
                   Preencha os dados abaixo <br /> para começar.
                 </p>
