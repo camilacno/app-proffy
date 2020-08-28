@@ -41,7 +41,7 @@ function Landing(): JSX.Element {
             Estudar
           </Link>
 
-          <Link to="/teach" className="give-classes">
+          <Link to="/give-classes" className="give-classes">
             <img src={giveClassesIcon} alt="Ensinar" />
             Dar aulas
           </Link>

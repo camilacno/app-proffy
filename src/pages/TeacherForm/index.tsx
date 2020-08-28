@@ -1,23 +1,36 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-
-import api from '../../services/api';
+// import jwt from 'jsonwebtoken';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+// import authConfig from '../../config/auth';
+
+import api from '../../services/api';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import rocketIcon from '../../assets/images/icons/rocket.svg';
+
 import './styles.css';
 
-function TeacherForm(): JSX.Element {
+const token = localStorage.getItem('@proffy:token');
+
+function TeacherForm() {
   const history = useHistory();
 
-  const [name, setName] = useState('');
-  const [avatar, setAvatar] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [bio, setBio] = useState('');
+  const [currentName, setCurrentName] = useState('');
+  const [currentLastName, setCurrentLastName] = useState('');
+  const [currentWhatsapp, setCurrentWhatsapp] = useState('');
+  const [currentBio, setCurrentBio] = useState('');
+  const [currentAvatar, setCurrentAvatar] = useState('');
+
+  const [nameSubmitted, setNameSubmitted] = useState('');
+  const [last_nameSubmitted, setLastNameSubmitted] = useState('');
+  const [avatarSubmitted, setAvatarSubmitted] = useState('');
+  const [whatsappSubmitted, setWhatsappSubmitted] = useState('');
+  const [bioSubmitted, setBioSubmitted] = useState('');
 
   const [subject, setSubject] = useState('');
   const [cost, setCost] = useState('');
@@ -25,6 +38,22 @@ function TeacherForm(): JSX.Element {
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: '', to: '' },
   ]);
+
+  // async function getCurrentData() {
+  //   if (token) {
+  //     const { id } = (await jwt.verify(token, authConfig.secret)) as any;
+
+  //     const currentData = await api.get(`users/${id}`);
+  //     console.log('rota find chamada pelo front');
+  //     const { name, last_name, avatar, whatsapp, bio } = await currentData.data;
+  //     setCurrentName(name);
+  //     setCurrentLastName(last_name);
+  //     setCurrentWhatsapp(whatsapp);
+  //     setCurrentBio(bio);
+  //     setCurrentAvatar(avatar);
+  //   }
+  // }
+  // getCurrentData();
 
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { week_day: 0, from: '', to: '' }]);
@@ -35,7 +64,7 @@ function TeacherForm(): JSX.Element {
     field: string,
     value: string,
   ) {
-    const updateScheduleItems = scheduleItems.map((scheduleItem, index) => {
+    const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
       if (index === position) {
         return { ...scheduleItem, [field]: value };
       }
@@ -43,80 +72,91 @@ function TeacherForm(): JSX.Element {
       return scheduleItem;
     });
 
-    setScheduleItems(updateScheduleItems);
+    setScheduleItems(updatedScheduleItems);
   }
 
-  function handleCreateClass(e: FormEvent) {
+  console.log(currentName);
+
+  async function handleCreateClass(e: FormEvent) {
+    console.log('botão ativou');
     e.preventDefault();
 
-    api
-      .post('classes', {
-        name,
-        avatar,
-        bio,
-        whatsapp,
+    await api
+      .post('give-classes', {
+        name: nameSubmitted,
+        last_name: last_nameSubmitted,
+        avatar: avatarSubmitted,
+        whatsapp: whatsappSubmitted,
+        bio: bioSubmitted,
         subject,
         cost: Number(cost),
         schedule: scheduleItems,
       })
       .then(() => {
-        alert('Cadastro realizado com sucesso!');
+        alert('Tudo certo!');
         history.push('/');
       })
-      .catch(() => {
-        alert('Erro no cadastro, tente novamente.');
+      .catch(error => {
+        console.log(error);
+        alert('Erro');
       });
-
-    console.log();
+    console.log('rota executada');
   }
 
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
         title="Que incrível que você quer dar aulas."
-        description="O primeiro passo é preencher este formulário de inscrição."
+        description="O primeiro passo é preencher esse formulário de inscrição."
+        iconImg={rocketIcon}
+        iconText="Prepare-se! Vai ser incrível."
       />
 
       <main>
         <form onSubmit={handleCreateClass}>
           <fieldset>
             <legend>Seus dados</legend>
-            <Input
-              name="name"
-              label="Nome completo"
-              value={name}
-              onChange={e => {
-                setName(e.target.value);
-              }}
-            />
-            <Input
-              name="avatar"
-              label="Avatar"
-              value={avatar}
-              onChange={e => {
-                setAvatar(e.target.value);
-              }}
-            />
-            <Input
-              name="whatsapp"
-              label="Whatsapp"
-              value={whatsapp}
-              onChange={e => {
-                setWhatsapp(e.target.value);
-              }}
-            />
+            <div className="user-info-db">
+              <img
+                src="https://avatars0.githubusercontent.com/u/47459889?s=460&v=4"
+                alt="Avatar"
+              />
+              <Input
+                className="user-name"
+                name="name"
+                label=""
+                value="Camila Nepomuceno"
+                placeholder={currentName}
+                onChange={e => {
+                  setNameSubmitted(e.target.value);
+                }}
+              />
+
+              <Input
+                className="whatsapp"
+                name="whatsapp"
+                label="Whatsapp"
+                value="(11) 95495-0325"
+                placeholder={currentWhatsapp}
+                onChange={e => {
+                  setWhatsappSubmitted(e.target.value);
+                }}
+              />
+            </div>
+
             <Textarea
               name="bio"
               label="Biografia"
-              value={bio}
+              value={bioSubmitted}
+              placeholder={currentBio}
               onChange={e => {
-                setBio(e.target.value);
+                setBioSubmitted(e.target.value);
               }}
             />
           </fieldset>
 
           <fieldset>
-            <legend>Sobre a aula</legend>
+            <legend>Sobre sua aula</legend>
 
             <Select
               name="subject"
@@ -126,16 +166,26 @@ function TeacherForm(): JSX.Element {
                 setSubject(e.target.value);
               }}
               options={[
-                { value: 'Artes', label: 'Artes' },
-                { value: 'Matemática', label: 'Matemática' },
-                { value: 'Inglês', label: 'Inglês' },
-                { value: 'Biologia', label: 'Biologia' },
+                { value: 'Literature', label: 'Literature' },
+                { value: 'Speech', label: 'Speech' },
+                {
+                  value: 'Writing or Composition',
+                  label: 'Writing or Composition',
+                },
+                { value: 'Algebra', label: 'Algebra' },
+                { value: 'Algebra 2', label: 'Algebra II' },
+                { value: 'Geometry', label: 'Geometry' },
+                { value: 'World History', label: 'World History' },
+                { value: 'Spanish', label: 'Spanish' },
+                { value: 'German', label: 'German' },
+                { value: 'French', label: 'French' },
+                { value: 'Chemistry', label: 'Chemistry' },
+                { value: 'Physics', label: 'Physics' },
               ]}
             />
-
             <Input
               name="cost"
-              label="Custo da sua hora por aula"
+              label="Valor/hora da sua aula"
               value={cost}
               onChange={e => {
                 setCost(e.target.value);
@@ -155,20 +205,20 @@ function TeacherForm(): JSX.Element {
               return (
                 <div key={scheduleItem.week_day} className="schedule-item">
                   <Select
-                    name="week_day"
-                    label="Dia da semana"
+                    name="weed_day"
+                    label="Dia da Semana"
                     value={scheduleItem.week_day}
                     onChange={e =>
                       setScheduleItemValue(index, 'week_day', e.target.value)
                     }
                     options={[
-                      { value: '0', label: 'Domingo' },
-                      { value: '1', label: 'Segunda-feira' },
-                      { value: '2', label: 'Terça-feira' },
-                      { value: '3', label: 'Quarta-feira' },
-                      { value: '4', label: 'Quinta-feira' },
-                      { value: '5', label: 'Sexta-feira' },
-                      { value: '7', label: 'Sábado' },
+                      { value: '0', label: 'Sunday' },
+                      { value: '1', label: 'Monday' },
+                      { value: '2', label: 'Tuesday' },
+                      { value: '3', label: 'Wednesday' },
+                      { value: '4', label: 'Thursday' },
+                      { value: '5', label: 'Friday' },
+                      { value: '6', label: 'Saturday' },
                     ]}
                   />
                   <Input
@@ -182,7 +232,7 @@ function TeacherForm(): JSX.Element {
                   />
                   <Input
                     name="to"
-                    label="Até"
+                    label="até"
                     type="time"
                     value={scheduleItem.to}
                     onChange={e =>
@@ -196,11 +246,11 @@ function TeacherForm(): JSX.Element {
 
           <footer>
             <p>
-              <img src={warningIcon} alt="Aviso importante" />
+              <img src={warningIcon} alt="Atenção" />
               Importante! <br />
-              Preencha todos os dados
+              Preencha todos os campos
             </p>
-            <button type="submit">Salvar cadastro</button>
+            <button type="submit">Criar aula</button>
           </footer>
         </form>
       </main>

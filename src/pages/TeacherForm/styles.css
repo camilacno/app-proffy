@@ -9,10 +9,9 @@
 
 #page-teacher-form main {
   background: var(--color-box-base);
-  width: 100%;
   max-width: 74rem;
   border-radius: 0.8rem;
-  margin: -3.2rem auto 3.2rem;
+  margin: -3.6rem auto 3.2rem;
   padding-top: 6.4rem;
   overflow: hidden;
 }
@@ -20,6 +19,34 @@
 #page-teacher-form main fieldset {
   border: 0;
   padding: 0 2.4rem;
+}
+
+#page-teacher-form main fieldset .user-info-db {
+  display: flex;
+  flex-direction: row;
+}
+
+#page-teacher-form main fieldset .user-info-db img {
+  border-radius: 50%;
+  height: 8rem;
+  width: 8rem;
+  margin-bottom: 5rem;
+  margin-top: 1rem;
+}
+
+#page-teacher-form main fieldset .user-info-db .user-name {
+  font: 700 2rem Archivo;
+  text-align: left;
+  background-color: #fff;
+  border: 0;
+  margin-right: 30rem;
+}
+
+#page-teacher-form main fieldset .user-info-db .whatsapp {
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  font: 500 1.4rem Poppins;
 }
 
 #page-teacher-form main fieldset + fieldset {
@@ -99,6 +126,22 @@
 
 #page-teacher-form main footer button:hover {
   background: var(--color-secondary-dark);
+}
+
+.about-class {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.6rem;
+}
+
+.about-class .input-block {
+  width: 35%;
+  margin-top: 0 !important;
+}
+
+.about-class .select-block {
+  width: 65%;
+  margin-top: 0 !important;
 }
 
 @media (min-width: 700px) {
