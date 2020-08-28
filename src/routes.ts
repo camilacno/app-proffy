@@ -15,7 +15,8 @@ const sessionsController = new SessionsController();
 
 routes.post('/login', sessionsController.store);
 
-routes.get('/classes', classesControllers.index);
+routes.get('/classes', classesControllers.find);
+routes.get('/classes/:id', classesControllers.index);
 routes.post('/give-classes', authMiddleware, classesControllers.create);
 
 routes.post('/connections', connectionsControllers.create);
@@ -24,5 +25,6 @@ routes.get('/connections', connectionsControllers.index);
 routes.post('/users', usersControllers.create);
 routes.get('/users', usersControllers.index);
 routes.get('/users/:id', usersControllers.find);
+routes.put('/users', authMiddleware, usersControllers.update);
 
 export default routes;
