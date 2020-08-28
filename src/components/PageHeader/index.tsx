@@ -9,6 +9,10 @@ import './styles.css';
 interface PageHeaderProps {
   title: string;
   description?: string;
+  iconText?: string;
+  iconImg?: string;
+  backgroundImg?: string;
+  pageName?: string;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = props => {
@@ -18,12 +22,22 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
         <Link to="/">
           <img src={backIcon} alt="Voltar" />
         </Link>
+
+        <p>{props.pageName}</p>
+
         <img src={logoImg} alt="Proffy" />
       </div>
 
       <div className="header-content">
+        <img src={props.backgroundImg} />
         <strong>{props.title}</strong>
-        {props.description && <p>{props.description}</p>}
+        <div className="header-content-description">
+          {!!props.description && <p>{props.description}</p>}
+          <div className="header-content-iconarea">
+            {!!props.iconImg && <img src={props.iconImg} alt="Proffy" />}
+            {!!props.iconText && <p>{props.iconText}</p>}
+          </div>
+        </div>
 
         {props.children}
       </div>
