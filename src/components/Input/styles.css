@@ -24,7 +24,7 @@
 
 .input-block:focus-within::after {
   width: calc(100% - 3.2rem);
-  height: 2px;
+  /* height: 2px; */
   content: ''; /* obrigatório com o before/after senão nada é exibido*/
   background: var(--color-primary-light);
   position: absolute;

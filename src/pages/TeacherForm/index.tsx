@@ -1,12 +1,12 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
-// import authConfig from '../../config/auth';
+import authConfig from '../../config/auth';
 
 import api from '../../services/api';
 
@@ -39,21 +39,23 @@ function TeacherForm() {
     { week_day: 0, from: '', to: '' },
   ]);
 
-  // async function getCurrentData() {
-  //   if (token) {
-  //     const { id } = (await jwt.verify(token, authConfig.secret)) as any;
+  async function getCurrentData() {
+    if (token) {
+      const { id } = (await jwt.verify(token, authConfig.secret)) as any;
 
-  //     const currentData = await api.get(`users/${id}`);
-  //     console.log('rota find chamada pelo front');
-  //     const { name, last_name, avatar, whatsapp, bio } = await currentData.data;
-  //     setCurrentName(name);
-  //     setCurrentLastName(last_name);
-  //     setCurrentWhatsapp(whatsapp);
-  //     setCurrentBio(bio);
-  //     setCurrentAvatar(avatar);
-  //   }
-  // }
-  // getCurrentData();
+      const currentData = await api.get(`users/${id}`);
+      console.log('rota find chamada pelo front');
+      const { name, last_name, avatar, whatsapp, bio } = await currentData.data;
+      setCurrentName(name);
+      setCurrentLastName(last_name);
+      setCurrentWhatsapp(whatsapp);
+      setCurrentBio(bio);
+      setCurrentAvatar(avatar);
+    }
+  }
+  getCurrentData();
+  // const userShown = `${currentName} ${currentLastName}`;
+  // console.log(userShown);
 
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { week_day: 0, from: '', to: '' }]);
@@ -83,9 +85,6 @@ function TeacherForm() {
 
     await api
       .post('give-classes', {
-        name: nameSubmitted,
-        last_name: last_nameSubmitted,
-        avatar: avatarSubmitted,
         whatsapp: whatsappSubmitted,
         bio: bioSubmitted,
         subject,
@@ -125,7 +124,7 @@ function TeacherForm() {
                 className="user-name"
                 name="name"
                 label=""
-                value="Camila Nepomuceno"
+                value={currentName}
                 placeholder={currentName}
                 onChange={e => {
                   setNameSubmitted(e.target.value);
@@ -136,7 +135,6 @@ function TeacherForm() {
                 className="whatsapp"
                 name="whatsapp"
                 label="Whatsapp"
-                value="(11) 95495-0325"
                 placeholder={currentWhatsapp}
                 onChange={e => {
                   setWhatsappSubmitted(e.target.value);
@@ -147,7 +145,6 @@ function TeacherForm() {
             <Textarea
               name="bio"
               label="Biografia"
-              value={bioSubmitted}
               placeholder={currentBio}
               onChange={e => {
                 setBioSubmitted(e.target.value);
@@ -166,21 +163,16 @@ function TeacherForm() {
                 setSubject(e.target.value);
               }}
               options={[
-                { value: 'Literature', label: 'Literature' },
-                { value: 'Speech', label: 'Speech' },
-                {
-                  value: 'Writing or Composition',
-                  label: 'Writing or Composition',
-                },
-                { value: 'Algebra', label: 'Algebra' },
-                { value: 'Algebra 2', label: 'Algebra II' },
-                { value: 'Geometry', label: 'Geometry' },
-                { value: 'World History', label: 'World History' },
-                { value: 'Spanish', label: 'Spanish' },
-                { value: 'German', label: 'German' },
-                { value: 'French', label: 'French' },
-                { value: 'Chemistry', label: 'Chemistry' },
-                { value: 'Physics', label: 'Physics' },
+                { value: 'Literatura', label: 'Literatura' },
+                { value: 'Inglês', label: 'Inglês' },
+                { value: 'Matemática', label: 'Matemática' },
+                { value: 'Geometria', label: 'Geometria' },
+                { value: 'História', label: 'História' },
+                { value: 'Espanhol', label: 'Espanhol' },
+                { value: 'Alemão', label: 'Alemão' },
+                { value: 'Francês', label: 'Francês' },
+                { value: 'Química', label: 'Química' },
+                { value: 'Física', label: 'Física' },
               ]}
             />
             <Input
@@ -212,13 +204,13 @@ function TeacherForm() {
                       setScheduleItemValue(index, 'week_day', e.target.value)
                     }
                     options={[
-                      { value: '0', label: 'Sunday' },
-                      { value: '1', label: 'Monday' },
-                      { value: '2', label: 'Tuesday' },
-                      { value: '3', label: 'Wednesday' },
-                      { value: '4', label: 'Thursday' },
-                      { value: '5', label: 'Friday' },
-                      { value: '6', label: 'Saturday' },
+                      { value: '0', label: 'Domingo' },
+                      { value: '1', label: 'Segunda-feira' },
+                      { value: '2', label: 'Terça-feira' },
+                      { value: '3', label: 'Quarta-feira' },
+                      { value: '4', label: 'Quinta-feira' },
+                      { value: '5', label: 'Sexta-feiraa' },
+                      { value: '6', label: 'Sábado' },
                     ]}
                   />
                   <Input
