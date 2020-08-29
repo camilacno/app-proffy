@@ -13,7 +13,13 @@ const connectionsControllers = new ConnectionsController();
 const usersControllers = new UsersController();
 const sessionsController = new SessionsController();
 
-routes.post('/login', sessionsController.store);
+routes.post('/login', sessionsController.login);
+routes.post(
+  '/forgot-password',
+  authMiddleware,
+  sessionsController.forgotPassword,
+);
+routes.post('/reset-password', sessionsController.resetPassword);
 
 routes.get('/classes', classesControllers.find);
 routes.get('/classes/:id', classesControllers.index);

@@ -11,6 +11,20 @@ interface ScheduleItem {
 
 export default class ClassesController {
   async index(req: Request, res: Response) {
+    console.log('rota index classes chamada');
+    const { id } = req.params;
+
+    const trx = await db.transaction();
+    const classes = await trx
+      .select()
+      .from('classes')
+      .where({ id: id })
+      .then(row => row);
+
+    return res.status(200).json(classes);
+  }
+
+  async find(req: Request, res: Response) {
     const filters = req.query;
 
     const subject = filters.subject as string;
