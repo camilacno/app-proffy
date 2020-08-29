@@ -10,6 +10,7 @@ import TeacherList from './pages/TeacherList';
 import TeacherForm from './pages/TeacherForm';
 import RequestPasswordComplete from './pages/RequestPasswordComplete';
 import RequestPassword from './pages/RequestPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function Routes() {
   return (
@@ -21,11 +22,12 @@ function Routes() {
       <Route path="/profile" component={Profile} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
-      <Route path="/request-password" component={RequestPassword} />
+      <Route path="/forgot-password" component={RequestPassword} />
       <Route
-        path="/request-password-complete"
+        path="/forgot-password-complete"
         component={RequestPasswordComplete}
       />
+      <Route path="/reset-password" component={ResetPassword} />
     </BrowserRouter>
   );
 }
