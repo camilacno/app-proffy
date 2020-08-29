@@ -27,6 +27,8 @@ function ResetPassword() {
       token: values.token,
     });
 
+    alert('Password successfully updated');
+
     history.push('login');
   }
 
@@ -72,10 +74,10 @@ function ResetPassword() {
                 <label className="form-label">
                   Digite aqui o token enviado para seu e-mail
                 </label>
-                <Field name="email" className="form-input" />
+                <Field name="token" className="form-input" />
                 <ErrorMessage
                   component="span"
-                  name="email"
+                  name="token"
                   className="form-error-message"
                 />
               </div>
