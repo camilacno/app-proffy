@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff, faHeart } from '@fortawesome/free-solid-svg-icons';
+import jwt from 'jsonwebtoken';
 
 import api from '../../services/api';
+
+import authConfig from '../../config/auth';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
@@ -12,10 +15,15 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 
 import './styles.css';
 
+const token = localStorage.getItem('@proffy:token');
+
 function Landing(): JSX.Element {
   const history = useHistory();
 
   const [totalConnections, setTotalConnections] = useState(0);
+  const [currentName, setCurrentName] = useState('');
+  const [currentLastName, setCurrentLastName] = useState('');
+  const [currentAvatar, setCurrentAvatar] = useState(logoImg);
 
   useEffect(() => {
     api.get('connections').then(res => {
@@ -25,6 +33,22 @@ function Landing(): JSX.Element {
     });
   }, []);
 
+  async function getCurrentData() {
+    if (token) {
+      const { id } = (await jwt.verify(token, authConfig.secret)) as any;
+
+      const currentData = await api.get(`users/${id}`);
+      console.log('rota find user chamada');
+      const { name, last_name, avatar } = await currentData.data;
+
+      setCurrentName(name);
+      setCurrentLastName(last_name);
+      setCurrentAvatar(avatar);
+    }
+  }
+
+  getCurrentData();
+
   async function handleLogout() {
     console.log('logout chamado');
     localStorage.removeItem('@proffy:token');
@@ -33,73 +57,67 @@ function Landing(): JSX.Element {
   }
 
   return (
-    <>
-      <div id="page-landing">
-        <div id="page-landing-content" className="container">
-          <div className="top-bar-home">
-            <div className="user-info">
-              <a href="/profile">
-                <img
-                  src="https://avatars0.githubusercontent.com/u/47459889?s=460&v=4"
-                  alt="Avatar"
-                  className=""
-                />
-                <p>Camila</p>
-                <p>Nepomuceno</p>
-              </a>
-            </div>
-
-            <FontAwesomeIcon
-              className="camera-img"
-              icon={faPowerOff}
-              size="2x"
-              color="#6842c2"
-              onClick={handleLogout}
-            />
+    <div id="page-landing">
+      <div id="page-landing-content" className="container">
+        <div className="top-bar-home">
+          <div className="user-info">
+            <a href="/profile">
+              <img src={currentAvatar} alt="Avatar" className="" />
+              <p>{currentName}</p>
+              <p>{currentLastName}</p>
+            </a>
           </div>
 
-          <main>
-            <div className="logo-container">
-              <img src={logoImg} alt="Proffy" />
-              <h2>Sua plataforma de estudos online.</h2>
-            </div>
+          <FontAwesomeIcon
+            className="camera-img"
+            icon={faPowerOff}
+            size="2x"
+            color="#6842c2"
+            onClick={handleLogout}
+          />
+        </div>
 
-            <img
-              src={landingImg}
-              alt="Plataforma de estudos"
-              className="hero-image"
-            />
-          </main>
+        <main>
+          <div className="logo-container">
+            <img src={logoImg} alt="Proffy" />
+            <h2>Sua plataforma de estudos online.</h2>
+          </div>
 
-          <footer>
-            <div className="footer-messages">
-              <p>
-                <b>Seja bem vindo.</b> <br />O que deseja fazer?
-              </p>
-              <div className="total-connections">
-                Total de {totalConnections} conexões <br />
-                <div>
-                  já realizadas
-                  <FontAwesomeIcon icon={faHeart} size="1x" color="#6842c2" />
-                </div>
+          <img
+            src={landingImg}
+            alt="Plataforma de estudos"
+            className="hero-image"
+          />
+        </main>
+
+        <footer>
+          <div className="footer-messages">
+            <p>
+              <b>Seja bem vindo.</b> <br />O que deseja fazer?
+            </p>
+            <div className="total-connections">
+              Total de {totalConnections} conexões <br />
+              <div>
+                já realizadas
+                <FontAwesomeIcon icon={faHeart} size="1x" color="#6842c2" />
               </div>
             </div>
+          </div>
 
-            <div className="buttons-container">
-              <Link to="/study" className="study">
-                <img src={studyIcon} alt="Estudar" />
-                Estudar
-              </Link>
+          <div className="buttons-container">
+            <Link to="/study" className="study">
+              <img src={studyIcon} alt="Estudar" />
+              Estudar
+            </Link>
 
-              <Link to="/give-classes" className="give-classes">
-                <img src={giveClassesIcon} alt="Ensinar" />
-                Dar aulas
-              </Link>
-            </div>
-          </footer>
-        </div>
+            <Link to="/give-classes" className="give-classes">
+              <img src={giveClassesIcon} alt="Ensinar" />
+              Dar aulas
+            </Link>
+          </div>
+        </footer>
       </div>
-    </>
+    </div>
   );
 }
 
