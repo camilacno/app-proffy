@@ -3,11 +3,59 @@
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  color: var(--color-text-in-primary);
   background: var(--color-primary);
+}
+
+.top-bar-home {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-bar-home img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.top-bar-home .user-info p {
+  margin-right: 0.5rem;
+  font: 600 1.4 Poppins;
+  color: #fff;
+}
+
+.top-bar-home svg {
+  background-color: var(--color-primary-light);
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+#page-landing-content main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#page-landing-content footer {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--color-background);
+}
+
+#page-landing-content footer .footer-messages {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .logo-container img {
@@ -15,25 +63,25 @@
 }
 
 .hero-image {
-  width: 100%;
+  width: 90%;
 }
 
 .logo-container {
   text-align: center;
-  margin-bottom: 3.2rem;
 }
 
 .logo-container h2 {
   font-weight: 500;
   font-size: 2.4rem;
   line-height: 4.6rem;
-  margin-top: 0.8rem;
+  color: var(--color-text-in-primary);
 }
 
 .buttons-container {
+  width: 80vw;
   display: flex;
   justify-content: center;
-  margin: 3.2rem 0;
+  margin: 2rem 0;
 }
 
 .buttons-container a {
@@ -81,28 +129,55 @@
   font-size: 1.4rem;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.total-connections img {
-  margin-left: 0.8rem;
+.total-connections div svg {
+  margin-left: 1rem;
 }
 
 @media (min-width: 1100px) {
-  #page-landing-content {
-    max-width: 1100px;
+  #page-landing {
+    width: 100vw;
+    height: 100vh;
+  }
 
-    display: grid;
-    grid-template-rows: 350px 1fr;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-areas:
-      'logo hero hero'
-      'buttons buttons total';
+  #page-landing-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+    align-items: center;
+  }
+
+  #page-landing-content main {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .top-bar-home {
+    max-width: 1100px;
+  }
+
+  .top-bar-home .user-info a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .top-bar-home .user-info img {
+    margin-right: 1rem;
+  }
+
+  .top-bar-home .user-info p {
+    margin-right: 0.5rem;
+    font: 600 1.4 Poppins;
+    color: #fff;
   }
 
   .logo-container {
-    grid-area: logo;
     align-self: center;
     text-align: left;
     margin: 0;
@@ -118,21 +193,32 @@
   }
 
   .hero-image {
-    grid-area: hero;
+    /* grid-area: hero; */
     justify-self: end;
   }
 
-  .buttons-container {
-    grid-area: buttons;
-    justify-content: flex-start;
+  #page-landing-content footer {
+    min-height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #page-landing-content footer span {
+    width: 25vw;
+    text-align: right;
+  }
+
+  #page-landing-content footer span b {
+    font-weight: bold;
+  }
+
+  .footer-messages {
+    margin-left: 10rem;
+    max-width: 40rem;
   }
 
   .buttons-container a {
     font-size: 2.4rem;
-  }
-
-  .total-connections {
-    grid-area: total;
-    justify-self: end;
   }
 }

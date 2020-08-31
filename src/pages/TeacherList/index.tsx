@@ -27,6 +27,7 @@ function TeacherList(): JSX.Element {
     });
 
     setTeachers(response.data);
+    console.log(teachers);
   }
 
   return (
@@ -41,10 +42,8 @@ function TeacherList(): JSX.Element {
               setSubject(e.target.value);
             }}
             options={[
-              { value: 'Artes', label: 'Artes' },
-              { value: 'Matemática', label: 'Matemática' },
-              { value: 'Inglês', label: 'Inglês' },
-              { value: 'Biologia', label: 'Biologia' },
+              { value: 'English', label: 'English' },
+              { value: 'Pastry', label: 'Pastry' },
             ]}
           />
           <Select
