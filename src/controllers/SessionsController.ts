@@ -26,6 +26,12 @@ export default class SessionsController {
         return res.status(401).json({ error: 'User not found' });
       }
 
+      if (user.email !== email) {
+        return res.status(401).json({
+          error: 'Enter the same e-mail registered in the database',
+        });
+      }
+
       const token = crypto.randomBytes(20).toString('hex');
       const now = new Date();
       now.setHours(now.getHours() + 1);
@@ -40,9 +46,17 @@ export default class SessionsController {
         {
           to: email,
           from: 'suporte@proffy.com.br',
-          html: { path: 'src/resources/mail/session/forgot-password.html' },
+          // html: { path: 'src/resources/mail/session/forgot-password.html' },
           subject: 'Solicitação de senha',
-          context: { token: token },
+          html: `<p>Você solicitou uma alteração de senha.
+          <br />
+          Acesse este link: <br/>
+          <a href="localhost:3000/reset-password">Alterar senha<a/>
+          <br />
+          E utilize este este token -> <b>${token}<b/>
+          <br />
+          Equipe Proffy
+          <p />`,
         },
         err => {
           if (err) {
@@ -62,7 +76,6 @@ export default class SessionsController {
   async resetPassword(req: Request, res: Response) {
     console.log('rota reset-password chamada');
     const { email, token, password } = req.body;
-    // const id = req.id;
 
     const trx = await db.transaction();
 
@@ -75,11 +88,14 @@ export default class SessionsController {
         .then(row => row);
 
       if (!user) {
-        return res.status(401).json({ error: 'User not found' });
+        return res
+          .status(401)
+          .json({ error: 'User with this email not found' });
       }
 
       const userToken = user.passwordResetToken;
       const tokenExpires = user.passwordResetExpires;
+      console.log(userToken);
 
       if (token !== userToken) {
         return res.status(401).json({ error: 'Invalid token' });
@@ -93,11 +109,15 @@ export default class SessionsController {
           .json({ error: 'Expired token, please request another one.' });
       }
 
-      await trx('users').where({ email: email }).update({ password });
+      const newPassword = await bcrypt.hash(password, 10);
+
+      await trx('users')
+        .where({ email: email })
+        .update({ password: newPassword });
 
       await trx.commit();
 
-      res.status(201).send({ error: 'Password updated successfully' });
+      res.status(201).send({ message: 'Password updated successfully' });
     } catch (err) {
       console.log(err);
       res.status(400).send({ error: 'Error updating password, try again' });
