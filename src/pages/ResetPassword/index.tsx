@@ -21,7 +21,7 @@ function ResetPassword() {
   const history = useHistory();
 
   async function handleUpdatePassword(values: any) {
-    const response = await api.post('reset-password', {
+    await api.post('reset-password', {
       email: values.email,
       password: values.password,
       token: values.token,
@@ -29,7 +29,7 @@ function ResetPassword() {
 
     alert('Password successfully updated');
 
-    history.push('login');
+    history.push('/login');
   }
 
   const validations = Yup.object().shape({
