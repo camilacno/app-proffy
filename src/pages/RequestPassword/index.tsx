@@ -3,7 +3,6 @@ import { useHistory, Link } from 'react-router-dom';
 
 import { ErrorMessage, Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { GoogleLogin } from 'react-google-login';
 
 import api from '../../services/api';
 
@@ -13,18 +12,13 @@ import './styles.css';
 
 function RequestPassword() {
   const history = useHistory();
-  async function handleLogin(values: any) {
-    const response = await api.post('/login', {
+  async function handleRequestPassword(values: any) {
+    const response = await api.post('/forgot-password', {
       email: values.email,
       password: values.password,
     });
 
-    const { token } = response.data;
-    const { name, bio } = response.data.user;
-
-    localStorage.setItem('@proffy:token', token);
-    localStorage.setItem('@proffy:name', name);
-    history.push('/give-classes');
+    history.push('/forgot-password-complete');
   }
 
   const validations = Yup.object().shape({
@@ -39,7 +33,7 @@ function RequestPassword() {
         <div className="req-password-form">
           <Formik
             initialValues={{ email: '', password: '' }}
-            onSubmit={handleLogin}
+            onSubmit={handleRequestPassword}
             validationSchema={validations}
           >
             <Form className="form">
