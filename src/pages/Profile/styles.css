@@ -1,32 +1,70 @@
-#page-teacher-form {
+#profile {
   width: 100vw;
   height: 100vh;
 }
 
-#page-teacher-form .page-header .header-content {
-  margin-bottom: 6.4rem;
+#profile .header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -25rem;
+  margin-bottom: 10rem;
 }
 
-#page-teacher-form main {
+#profile .header-container img {
+  border-radius: 50%;
+  height: 12rem;
+}
+
+#profile .header-container .camera-img {
+  margin-left: 8rem;
+  margin-top: -3.1rem;
+}
+
+#profile .header-container strong {
+  margin-top: 1rem;
+  font: 700 2.4rem Archivo;
+  color: var(--color-title-in-primary);
+}
+
+#profile .header-container p {
+  line-height: 5rem;
+  margin-top: 0.5rem;
+  font: 500 1.5rem Poppins;
+  color: var(--color-title-in-primary);
+}
+
+#profile main {
   background: var(--color-box-base);
+  width: 100%;
   max-width: 74rem;
   border-radius: 0.8rem;
-  margin: -3.6rem auto 3.2rem;
+  margin: -6.6rem auto 3.2rem;
   padding-top: 6.4rem;
   overflow: hidden;
 }
 
-#page-teacher-form main fieldset {
+#profile main fieldset {
   border: 0;
   padding: 0 2.4rem;
 }
 
-#page-teacher-form main fieldset .user-info-db {
+#profile main fieldset .user-info-db {
   display: flex;
   flex-direction: row;
+  column-gap: 3rem;
+  margin-bottom: 1rem;
 }
 
-#page-teacher-form main fieldset .user-info-db img {
+#profile main fieldset .user-info-db .email-input {
+  width: 38rem;
+}
+
+/* #profile main fieldset textarea {
+  margin-bottom: 5rem;
+} */
+
+#profile main fieldset .user-info-db img {
   border-radius: 50%;
   height: 8rem;
   width: 8rem;
@@ -34,7 +72,7 @@
   margin-top: 1rem;
 }
 
-#page-teacher-form main fieldset .user-info-db .user-name {
+#profile main fieldset .user-info-db .user-name {
   font: 700 2rem Archivo;
   text-align: left;
   background-color: #fff;
@@ -42,18 +80,18 @@
   margin-right: 30rem;
 }
 
-#page-teacher-form main fieldset .user-info-db .whatsapp {
+#profile main fieldset .user-info-db .whatsapp {
   max-width: 20rem;
   display: flex;
   flex-direction: column;
   font: 500 1.4rem Poppins;
 }
 
-#page-teacher-form main fieldset + fieldset {
+#profile main form fieldset + fieldset {
   margin-top: 6.4rem;
 }
 
-#page-teacher-form main fieldset legend {
+#profile main fieldset legend {
   font: 700 2.4rem Archivo;
   color: var(--color-text-title);
   margin-bottom: 2.4rem;
@@ -65,7 +103,25 @@
   border-bottom: 1px solid var(--color-line-in-white);
 }
 
-#page-teacher-form main fieldset legend button {
+#profile main fieldset .delete-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-alert);
+  background: none;
+  border: 0;
+  color: var(--color-text-alert) !important;
+  font: 600 italic 1.2rem Archivo;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+  /* width: 100%; */
+}
+
+#profile main fieldset legend button {
   background: none;
   border: 0;
   color: var(--color-primary);
@@ -74,27 +130,27 @@
   transition: color 0.2s;
 }
 
-#page-teacher-form main fieldset legend button:hover {
+#profile main fieldset legend button:hover {
   color: var(--color-primary-dark);
 }
 
-#page-teacher-form main fieldset .input-block + .textarea-block,
-#page-teacher-form main fieldset .select-block + .input-block {
+#profile main fieldset .input-block + .textarea-block,
+#profile main fieldset .select-block + .input-block {
   margin-top: 2.4rem;
 }
 
-#page-teacher-form main label {
+#profile main label {
   color: var(--color-text-complement);
 }
 
-#page-teacher-form main footer {
+#profile main footer {
   padding: 4rem 2.4rem;
   background: var(color--box-footer);
   border-top: 1px solid var(--color-line-in-white);
   margin-top: 6.4rem;
 }
 
-#page-teacher-form main footer p {
+#profile main footer p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,11 +159,11 @@
   color: var(--color-text-complement);
 }
 
-#page-teacher-form main footer p img {
+#profile main footer p img {
   margin-right: 2rem;
 }
 
-#page-teacher-form main footer button {
+#profile main footer button {
   width: 100%;
   height: 5.6rem;
   background: var(--color-secondary);
@@ -124,7 +180,7 @@
   margin-top: 3.2rem;
 }
 
-#page-teacher-form main footer button:hover {
+#profile main footer button:hover {
   background: var(--color-secondary-dark);
 }
 
@@ -145,40 +201,40 @@
 }
 
 @media (min-width: 700px) {
-  #page-teacher-form {
+  #profile {
     max-width: 100vw;
   }
 
-  #page-teacher-form .page-header .header-content {
+  #profile .page-header .header-content {
     margin-bottom: 0;
   }
 
-  #page-teacher-form main fieldset {
+  #profile main fieldset {
     padding: 0 6.4rem;
   }
 
-  #page-teacher-form main .schedule-item {
+  #profile main .schedule-item {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     column-gap: 1.6rem;
   }
 
-  #page-teacher-form main .schedule-item .input-block {
+  #profile main .schedule-item .input-block {
     margin-top: 0 !important;
   }
 
-  #page-teacher-form main footer {
+  #profile main footer {
     padding: 4 6.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  #page-teacher-form main footer p {
+  #profile main footer p {
     justify-content: space-between;
   }
 
-  #page-teacher-form main footer button {
+  #profile main footer button {
     width: 20rem;
     margin-top: 0;
   }
