@@ -41,6 +41,7 @@ function SignUp() {
   const validations = Yup.object().shape({
     name: Yup.string().required('Obrigatório'),
     last_name: Yup.string(),
+    avatar: Yup.string(),
     whatsapp: Yup.string(),
     email: Yup.string()
       .email('Deve ser um email válido')
@@ -51,6 +52,7 @@ function SignUp() {
   });
 
   const initialValues = {
+    avatar: '',
     name: '',
     last_name: '',
     whatsapp: '',
@@ -117,6 +119,18 @@ function SignUp() {
                 </div>
               </div>
 
+              <div className="input-block">
+                <label className="form-label">
+                  Link para sua imagem de avatar
+                </label>
+                <Field name="avatar" className="form-input" />
+                <ErrorMessage
+                  component="span"
+                  name="avatar"
+                  className="form-error-message"
+                />
+              </div>
+              <br />
               <div className="input-block">
                 <label className="form-label">E-mail</label>
                 <Field name="email" className="form-input" />
