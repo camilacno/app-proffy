@@ -11,20 +11,39 @@ interface ScheduleItem {
 
 export default class ClassesController {
   async index(req: Request, res: Response) {
-    console.log('rota index classes chamada');
+    console.log('rota classes by id chamada');
     const { id } = req.params;
 
     const trx = await db.transaction();
-    const classes = await trx
-      .select()
-      .from('classes')
-      .where({ id: id })
-      .then(row => row);
 
-    return res.status(200).json(classes);
+    console.log(id);
+
+    try {
+      // const classes = await trx
+      //   .from('classes')
+      //   .where({ user_id: id })
+      //   .select()
+      //   .then(row => row);
+
+      const classes = await trx('classes')
+        .whereExists(function () {
+          this.select('class_schedule.*')
+            .from('class_schedule')
+            .whereRaw('`class_schedule`.`class_id` = `classes`.`id`');
+        })
+        .where('classes.user_id', '=', id)
+        .join('users', 'classes.user_id', '=', 'users.id')
+        .select(['classes.*', 'users.name', 'users.last_name']);
+
+      return res.json(classes);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'Error processing request' });
+    }
   }
 
   async find(req: Request, res: Response) {
+    console.log('rota find by filters chamada');
     const filters = req.query;
 
     const subject = filters.subject as string;
