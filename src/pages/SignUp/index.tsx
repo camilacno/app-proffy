@@ -71,12 +71,16 @@ function SignUp() {
             validationSchema={validations}
           >
             <Form className="form">
-              <strong>
-                Cadastro
-                <p>
-                  Preencha os dados abaixo <br /> para começar.
-                </p>
-              </strong>
+              <div className="form-header">
+                <strong>
+                  Cadastro
+                  <p>
+                    Preencha os dados abaixo <br /> para começar.
+                  </p>
+                </strong>
+
+                <a href="/login">Login</a>
+              </div>
 
               <div className="input-group">
                 <div className="input-block">
@@ -130,7 +134,7 @@ function SignUp() {
                   className="form-error-message"
                 />
               </div>
-              <br />
+
               <div className="input-block">
                 <label className="form-label">E-mail</label>
                 <Field name="email" className="form-input" />
@@ -140,7 +144,7 @@ function SignUp() {
                   className="form-error-message"
                 />
               </div>
-              <br />
+
               <div className="input-block">
                 <label className="form-label">Senha</label>
                 <Field

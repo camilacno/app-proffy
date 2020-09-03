@@ -111,7 +111,7 @@ function Login() {
           <div className="endpage-links">
             <div className="">
               <p>Não tem conta?</p>
-              <Link to="/" className="endpage-signup">
+              <Link to="/signup" className="endpage-signup">
                 <label>Cadastre-se</label>
               </Link>
             </div>

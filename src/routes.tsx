@@ -12,6 +12,8 @@ import RequestPasswordComplete from './pages/RequestPasswordComplete';
 import RequestPassword from './pages/RequestPassword';
 import ResetPassword from './pages/ResetPassword';
 
+import Test from './pages/Test';
+
 function Routes() {
   return (
     <BrowserRouter>
@@ -28,6 +30,8 @@ function Routes() {
         component={RequestPasswordComplete}
       />
       <Route path="/reset-password" component={ResetPassword} />
+
+      <Route path="/test" component={Test} />
     </BrowserRouter>
   );
 }
