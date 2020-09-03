@@ -11,6 +11,8 @@ export async function up(knex: Knex) {
     table.string('avatar');
     table.string('whatsapp');
     table.string('bio');
+    table.string('passwordResetToken');
+    table.timestamp('passwordResetExpires').defaultTo(knex.fn.now());
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 }
