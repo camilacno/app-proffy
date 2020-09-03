@@ -5,6 +5,8 @@ import ConnectionsController from './controllers/ConnectionsController';
 import UsersController from './controllers/UsersController';
 import SessionsController from './controllers/SessionsController';
 
+import authMiddleware from './middlewares/auth';
+
 const routes = express.Router();
 const classesControllers = new ClassesController();
 const connectionsControllers = new ConnectionsController();
@@ -13,13 +15,16 @@ const sessionsController = new SessionsController();
 
 routes.post('/login', sessionsController.store);
 
-routes.post('/classes', classesControllers.create);
-routes.get('/classes', classesControllers.index);
+routes.get('/classes', classesControllers.find);
+routes.get('/classes/:id', classesControllers.index);
+routes.post('/give-classes', authMiddleware, classesControllers.create);
 
 routes.post('/connections', connectionsControllers.create);
 routes.get('/connections', connectionsControllers.index);
 
 routes.post('/users', usersControllers.create);
 routes.get('/users', usersControllers.index);
+routes.get('/users/:id', usersControllers.find);
+routes.put('/users', authMiddleware, usersControllers.update);
 
 export default routes;

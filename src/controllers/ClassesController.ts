@@ -44,19 +44,16 @@ export default class ClassesController {
   }
 
   async create(req: Request, res: Response) {
-    const { name, avatar, whatsapp, bio, subject, cost, schedule } = req.body;
+    console.log('rota create chamada');
+    const { whatsapp, bio, subject, cost, schedule } = req.body;
+    const user_id = req.id;
+
+    console.log(whatsapp, bio, subject, cost, schedule, user_id);
 
     const trx = await db.transaction();
 
     try {
-      const insertedUsersIds = await trx('users').insert({
-        name,
-        whatsapp,
-        avatar,
-        bio,
-      });
-
-      const user_id = insertedUsersIds[0];
+      await trx('users').where({ id: user_id }).update({ whatsapp, bio });
 
       const insertedClassesIds = await trx('classes').insert({
         subject,
