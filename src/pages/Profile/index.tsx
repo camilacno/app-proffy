@@ -32,7 +32,7 @@ function Profile() {
   const [currentBio, setCurrentBio] = useState('');
   const [currentAvatar, setCurrentAvatar] = useState('');
   const [currentEmail, setCurrentEmail] = useState('');
-  const [currentSubject, setCurrentSubject] = useState('');
+  // const [currentSubject, setCurrentSubject] = useState('');
 
   const [nameSubmitted, setNameSubmitted] = useState('');
   const [last_nameSubmitted, setLastNameSubmitted] = useState('');
@@ -73,7 +73,7 @@ function Profile() {
       setCurrentBio(bio);
       setCurrentAvatar(avatar);
 
-      setCurrentSubject(response.data[0].subject);
+      // setCurrentSubject(response.data[0].subject);
     }
   }
   getCurrentData();
@@ -153,7 +153,7 @@ function Profile() {
         />
 
         <strong>{currentName}</strong>
-        <p>{currentSubject}</p>
+        <p>Alterar para current subject caso haja</p>
       </div>
 
       <main>
@@ -220,9 +220,9 @@ function Profile() {
             <Select
               name="subject"
               label="Matéria"
-              value={currentSubject}
+              value="Alterar depois para consulta API"
               onChange={e => {
-                setCurrentSubject(e.target.value);
+                setSubject(e.target.value);
               }}
               options={[
                 { value: 'Literature', label: 'Literature' },
