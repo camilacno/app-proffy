@@ -18,7 +18,7 @@ import './styles.css';
 
 const token = localStorage.getItem('@proffy:token');
 
-function Landing(): JSX.Element {
+function Test(): JSX.Element {
   const history = useHistory();
 
   const [totalConnections, setTotalConnections] = useState(0);
@@ -49,6 +49,13 @@ function Landing(): JSX.Element {
   }
 
   getCurrentData();
+
+  async function handleLogout() {
+    console.log('logout chamado');
+    localStorage.removeItem('@proffy:token');
+    localStorage.removeItem('@proffy:name');
+    history.push('/login');
+  }
 
   return (
     <div id="page-landing">
@@ -99,4 +106,4 @@ function Landing(): JSX.Element {
   );
 }
 
-export default Landing;
+export default Test;
