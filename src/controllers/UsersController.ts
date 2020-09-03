@@ -39,7 +39,6 @@ export default class UsersController {
       });
 
       const class_id = insertedClassesIds[0];
-      console.log(class_id);
 
       const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
         return {
@@ -94,7 +93,15 @@ export default class UsersController {
   }
 
   async create(req: Request, res: Response) {
-    const { name, last_name, whatsapp, is_proffy, email, password } = req.body;
+    const {
+      avatar,
+      name,
+      last_name,
+      whatsapp,
+      is_proffy,
+      email,
+      password,
+    } = req.body;
 
     console.log('rota create chamada');
 
@@ -112,6 +119,7 @@ export default class UsersController {
       const hashed_password = await bcrypt.hash(password, 10);
 
       const insertedUser = await trx('users').insert({
+        avatar,
         name,
         last_name,
         whatsapp,
