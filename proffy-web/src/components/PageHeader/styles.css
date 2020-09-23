@@ -1,0 +1,116 @@
+.page-header {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  min-height: 33.5rem;
+}
+
+.page-header .top-bar-container {
+  width: 100%;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--color-text-in-primary);
+  padding: 1.6rem 0;
+  background: var(--color-primary-darker);
+}
+
+.page-header .top-bar-container a {
+  height: 3.2rem;
+  transition: opacity 0.2s;
+}
+
+.page-header .top-bar-container p {
+  font: 500 1.6rem Archivo;
+}
+
+.page-header .top-bar-container a:hover {
+  opacity: 0.6;
+}
+
+.page-header .top-bar-container > img {
+  height: 1.6rem;
+}
+
+.page-header .header-content {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  margin: 3.2rem auto;
+}
+
+.page-header .header-content img {
+  max-height: 20rem;
+  width: 100%;
+}
+
+.page-header .header-content strong {
+  font: 700 3.6rem Archivo;
+  line-height: 4.2rem;
+  color: var(--color-title-in-primary);
+  text-align: left;
+}
+
+.page-header .header-content p {
+  max-width: 30rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--color-text-in-primary);
+  margin-top: 2.4rem;
+}
+
+.page-header .header-content-description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.page-header .header-content-iconarea {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 25%;
+}
+
+.page-header .header-content-iconarea img {
+  margin-top: 2.4rem;
+  margin-right: 1rem;
+  height: 3.5rem;
+}
+
+.page-header .header-content-iconarea p {
+  font-size: 1.2rem;
+  min-width: 10rem;
+}
+
+@media (min-width: 700px) {
+  .page-header {
+    height: 340px;
+  }
+
+  .page-header .top-bar-container {
+    /* max-width: 1100px; */
+  }
+
+  .page-header .header-content {
+    flex: 1;
+    max-width: 740px;
+    margin: 0 auto;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .page-header .header-content strong {
+    max-width: 350px;
+  }
+
+  .page-header .header-content-iconarea img {
+    margin-right: 0;
+  }
+}
